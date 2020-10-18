@@ -19,7 +19,8 @@ public class CubeObservable extends Cube implements Observable {
     }
 
 
-    private void notifyObservers() {
+    @Override
+    public void notifyObservers() {
 	   for (Observer observer : observers) {
 		  observer.update(this);
 	   }

@@ -1,22 +1,22 @@
-package cube.data.access.specification.impl;
+package cube.data.access.impl.search;
 
-import cube.data.access.specification.CoordinateSpecification;
+import cube.data.access.api.CoordinateSearchSpecification;
 import cube.logics.creator.CubeDataExtractor;
 import cube.model.CoordinateName;
 import cube.model.Cube;
 
 import java.util.List;
 
-public class YCoordinate extends CoordinateSpecification {
+public class YCoordinateSearchSpecification extends CoordinateSearchSpecification {
     private final CubeDataExtractor dataExtractor;
 
     //package access for testing
-    YCoordinate(CubeDataExtractor dataExtractor, double xCoordinate) {
+    YCoordinateSearchSpecification(CubeDataExtractor dataExtractor, double xCoordinate) {
 	   super(xCoordinate);
 	   this.dataExtractor = dataExtractor;
     }
 
-    public YCoordinate(double xCoordinate) {
+    public YCoordinateSearchSpecification(double xCoordinate) {
 	   super(xCoordinate);
 	   dataExtractor = new CubeDataExtractor();
     }

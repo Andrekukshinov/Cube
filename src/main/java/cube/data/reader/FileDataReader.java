@@ -1,7 +1,6 @@
-package cube.data.impl;
+package cube.data.reader;
 
 import cube.data.DataException;
-import cube.data.DataReader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,12 +13,14 @@ public class FileDataReader implements DataReader {
     public List<String> readLines(String filePath) throws DataException {
 	   List<String> result = new ArrayList<>();
 	   try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-		  String line;
-		  while ((line = reader.readLine()) != null) {
+		  String line = reader.readLine();
+
+		  while (line != null) {
 			 result.add(line);
+			 line = reader.readLine();
 		  }
 	   } catch (IOException e) {
-	       throw new DataException(e.getMessage(), e);
+		  throw new DataException(e.getMessage(), e);
 	   }
 	   return result;
     }

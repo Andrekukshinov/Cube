@@ -1,17 +1,14 @@
-package cube.data.access.specification;
+package cube.data.access.api;
 
-import cube.data.access.specification.Specification;
-import cube.logics.CubeDataCalculator;
-import cube.logics.DistancesBetweenSpotsProvider;
-import cube.logics.creator.CubeDataExtractor;
+import cube.data.access.api.SearchSpecification;
 import cube.model.Cube;
 
 import java.util.List;
 
-public abstract class CoordinateSpecification implements Specification<Cube> {
+public abstract class CoordinateSearchSpecification implements SearchSpecification<Cube> {
     private final double xCoordinate;
 
-    public CoordinateSpecification( double xCoordinate) {
+    public CoordinateSearchSpecification(double xCoordinate) {
 	   this.xCoordinate = xCoordinate;
     }
 

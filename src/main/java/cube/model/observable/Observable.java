@@ -10,5 +10,6 @@ public interface Observable {
 
     void updateCube(int index, Spot spot);
 
+    void notifyObservers();
 
 }

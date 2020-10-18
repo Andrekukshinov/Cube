@@ -2,7 +2,8 @@ package cube.data.impl;
 
 
 import cube.data.DataException;
-import cube.data.DataReader;
+import cube.data.reader.DataReader;
+import cube.data.reader.FileDataReader;
 import org.junit.Assert;
 import org.junit.Test;
 

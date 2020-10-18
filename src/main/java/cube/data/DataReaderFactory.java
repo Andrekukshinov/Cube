@@ -1,6 +1,8 @@
 package cube.data;
 
-import cube.data.impl.FileDataReader;
+import cube.data.reader.DataReader;
+import cube.data.reader.FileDataReader;
+import cube.data.reader.ReaderType;
 
 public class DataReaderFactory {
     public DataReader createDataReader(ReaderType type) {

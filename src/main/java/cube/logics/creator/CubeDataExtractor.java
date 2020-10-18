@@ -24,11 +24,6 @@ public class CubeDataExtractor {
 	   return cubeCoordinates;
     }
 
-    public double getMinCoordinate(Cube cube, CoordinateName name) {
-	   List<Double> coordinates = getCoordinates(cube, name);
-	   return Collections.min(coordinates);
-    }
-
     public List<Double> getCoordinates(Cube cube, CoordinateName name) {
 	   List<Double> xCoordinates = new ArrayList<>();
 	   for (Spot spot : getCubeSpots(cube)) {

@@ -1,4 +1,6 @@
-package cube.data;
+package cube.data.reader;
+
+import cube.data.DataException;
 
 import java.io.IOException;
 import java.util.List;

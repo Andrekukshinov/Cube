@@ -1,13 +1,12 @@
-package cube.data.access.specification.impl;
+package cube.data.access.impl.search;
 
-import cube.data.access.specification.Specification;
+import cube.data.access.api.SearchSpecification;
 import cube.logics.CubeDataCalculator;
 import cube.logics.DistancesBetweenSpotsProvider;
 import cube.logics.creator.CubeDataExtractor;
 import cube.model.Cube;
 
-public class VolumeSpecification implements Specification<Cube> {
-
+public class PerimeterSearchSpecification implements SearchSpecification<Cube> {
     private static final double THRESHOLD_VALUE = 0.001;
 
     private final CubeDataCalculator dataCalculator;
@@ -15,14 +14,14 @@ public class VolumeSpecification implements Specification<Cube> {
     private final double rightBorder;
 
     //    package access for testing
-    VolumeSpecification(
+    PerimeterSearchSpecification(
 		  CubeDataCalculator dataCalculator, double leftBorder, double rightBorder) {
 	   this.dataCalculator = dataCalculator;
 	   this.leftBorder = leftBorder;
 	   this.rightBorder = rightBorder;
     }
 
-    public VolumeSpecification(double leftBorder, double rightBorder) {
+    public PerimeterSearchSpecification(double leftBorder, double rightBorder) {
 	   this.leftBorder = leftBorder;
 	   this.rightBorder = rightBorder;
 	   CubeDataExtractor dataExtractor = new CubeDataExtractor();
@@ -32,7 +31,7 @@ public class VolumeSpecification implements Specification<Cube> {
 
     @Override
     public boolean isSpecified(Cube cube) {
-	   double volume = dataCalculator.calculateCubeVolume(cube);
-	   return volume - leftBorder > THRESHOLD_VALUE && rightBorder - volume > THRESHOLD_VALUE;
+	   double perimeter = dataCalculator.calculateCubePerimeter(cube);
+	   return perimeter - leftBorder > THRESHOLD_VALUE && rightBorder - perimeter > THRESHOLD_VALUE;
     }
 }

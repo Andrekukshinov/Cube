@@ -1,19 +1,18 @@
 package cube.model;
 
 public class Cube {
-    private final Spot firstSpot;
-    private final Spot secondSpot;
-    private final Spot thirdSpot;
-    private final Spot fourthSpot;
-    private final Spot fifthSpot;
-    private final Spot sixthSpot;
-    private final Spot seventhSpot;
-    private final Spot eighthSpot;
+    private Spot firstSpot;
+    private Spot secondSpot;
+    private Spot thirdSpot;
+    private Spot fourthSpot;
+    private Spot fifthSpot;
+    private Spot sixthSpot;
+    private Spot seventhSpot;
+    private Spot eighthSpot;
 
     public Cube(
-		  Spot firstSpot, Spot secondSpot, Spot thirdSpot,
-		  Spot lowPlaneTopRight, Spot fifthSpot, Spot sixthSpot,
-		  Spot seventhSpot, Spot eighthSpot) {
+		  Spot firstSpot, Spot secondSpot, Spot thirdSpot, Spot lowPlaneTopRight,
+		  Spot fifthSpot, Spot sixthSpot, Spot seventhSpot, Spot eighthSpot) {
 	   this.firstSpot = firstSpot;
 	   this.secondSpot = secondSpot;
 	   this.thirdSpot = thirdSpot;
@@ -54,6 +53,38 @@ public class Cube {
 
     public Spot getEighthSpot() {
 	   return eighthSpot;
+    }
+
+    public void setFirstSpot(Spot firstSpot) {
+	   this.firstSpot = firstSpot;
+    }
+
+    public void setSecondSpot(Spot secondSpot) {
+	   this.secondSpot = secondSpot;
+    }
+
+    public void setThirdSpot(Spot thirdSpot) {
+	   this.thirdSpot = thirdSpot;
+    }
+
+    public void setFourthSpot(Spot fourthSpot) {
+	   this.fourthSpot = fourthSpot;
+    }
+
+    public void setFifthSpot(Spot fifthSpot) {
+	   this.fifthSpot = fifthSpot;
+    }
+
+    public void setSixthSpot(Spot sixthSpot) {
+	   this.sixthSpot = sixthSpot;
+    }
+
+    public void setSeventhSpot(Spot seventhSpot) {
+	   this.seventhSpot = seventhSpot;
+    }
+
+    public void setEighthSpot(Spot eighthSpot) {
+	   this.eighthSpot = eighthSpot;
     }
 
     @Override

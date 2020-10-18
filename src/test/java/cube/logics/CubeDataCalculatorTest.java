@@ -77,14 +77,35 @@ public class CubeDataCalculatorTest {
 	   when(spotsExtractor.getCubeSpots(any(Cube.class))).thenReturn(expected);
 
 	   when(distancesBetweenSpotsProvider
-			 .calculateDistances(any(List.class), any(Spot.class), anyInt())).thenReturn(DISTANCES);
+			 .calculateDistances(any(List.class), any(Spot.class), anyInt()))
+			 .thenReturn(Arrays.asList(3.0));
+
 	   CubeDataCalculator dataCalculator = new CubeDataCalculator(
 			 distancesBetweenSpotsProvider, spotsExtractor);
 	   //when
 	   double calculatedVolume = dataCalculator.calculateCubeVolume(givenCube);
 	   //then
 	   Assert.assertTrue(
-			 Math.abs(Math.pow(4.0, 3) - calculatedVolume) < THRESHOLD_VALUE);
+			 Math.abs(Math.pow(3.0, 3) - calculatedVolume) < THRESHOLD_VALUE);
+
+    }
+
+    @Test
+    public void testCalculateCubePerimeterShouldReturnCorrectCubeVolume() {
+	   CubeDataExtractor spotsExtractor = Mockito.mock(CubeDataExtractor.class);
+	   DistancesBetweenSpotsProvider distancesBetweenSpotsProvider = Mockito
+			 .mock(DistancesBetweenSpotsProvider.class);
+
+	   when(spotsExtractor.getCubeSpots(any(Cube.class))).thenReturn(expected);
+
+	   when(distancesBetweenSpotsProvider.calculateDistances(any(List.class), any(Spot.class), anyInt()))
+			 .thenReturn(Arrays.asList(3.0));
+	   CubeDataCalculator dataCalculator = new CubeDataCalculator(
+			 distancesBetweenSpotsProvider, spotsExtractor);
+	   //when
+	   double perim = dataCalculator.calculateCubePerimeter(givenCube);
+	   //then
+	   Assert.assertTrue(Math.abs(3.0 * 4 * 3 - perim) < THRESHOLD_VALUE);
 
     }
 
@@ -104,7 +125,8 @@ public class CubeDataCalculatorTest {
 	   when(spotsExtractor.getCubeSpots(any(Cube.class))).thenReturn(expected);
 
 	   when(distancesBetweenSpotsProvider
-			 .calculateDistances(any(List.class), any(Spot.class), anyInt())).thenReturn(distances);
+			 .calculateDistances(any(List.class), any(Spot.class), anyInt()))
+			 .thenReturn(Arrays.asList(3.0));
 
 	   CubeDataCalculator dataCalculator = new CubeDataCalculator(
 			 distancesBetweenSpotsProvider, spotsExtractor);
@@ -112,7 +134,7 @@ public class CubeDataCalculatorTest {
 	   double calculatedVolume = dataCalculator.calculateCubeArea(givenCube);
 	   //then
 	   Assert.assertTrue(
-			 (Math.abs(Math.pow(4.0, 2) * 6) - calculatedVolume) < THRESHOLD_VALUE);
+			 (Math.abs(Math.pow(3.0, 2) * 6) - calculatedVolume) < THRESHOLD_VALUE);
 
     }
 
@@ -152,11 +174,14 @@ public class CubeDataCalculatorTest {
 
     @Test
     public void testCalculateVolumeRatioShouldReturnVolumeRatio() throws LogicsException {
-	   DistancesBetweenSpotsProvider distancesBetweenSpotsProvider = Mockito.mock(
-			 DistancesBetweenSpotsProvider.class);
+	   DistancesBetweenSpotsProvider distancesBetweenSpotsProvider = Mockito
+			 .mock(DistancesBetweenSpotsProvider.class);
 	   CubeDataExtractor spotsExtractor = Mockito.mock(CubeDataExtractor.class);
-	   List<Spot> extractedSpots = Arrays.asList(firstSpot, secondSpot, thirdSpot, fourthSpot, fifthSpot,sixthSpot, seventhSpot, eighthSpot);
-	   Cube forCalculation = new Cube(firstSpot, secondSpot, thirdSpot, fourthSpot, fifthSpot,sixthSpot, seventhSpot, eighthSpot);
+	   List<Spot> extractedSpots = Arrays
+			 .asList(firstSpot, secondSpot, thirdSpot, fourthSpot, fifthSpot,
+				    sixthSpot, seventhSpot, eighthSpot);
+	   Cube forCalculation = new Cube(firstSpot, secondSpot, thirdSpot, fourthSpot,
+			 fifthSpot, sixthSpot, seventhSpot, eighthSpot);
 	   double fifthXCoordinate = fifthSpot.getXCoordinate();
 	   double secondXCoordinate = secondSpot.getXCoordinate();
 	   double thirdXCoordinate = thirdSpot.getXCoordinate();
@@ -164,16 +189,22 @@ public class CubeDataCalculatorTest {
 	   double firstXCoordinate = firstSpot.getXCoordinate();
 	   double sixthXCoordinate = sixthSpot.getXCoordinate();
 	   double seventhXCoordinate = seventhSpot.getXCoordinate();
-	   List<Double> spotCoordinates = Arrays.asList(firstXCoordinate, secondXCoordinate, thirdXCoordinate, fourthXCoordinate, fifthXCoordinate, sixthXCoordinate, seventhXCoordinate);
+	   List<Double> spotCoordinates = Arrays
+			 .asList(firstXCoordinate, secondXCoordinate, thirdXCoordinate,
+				    fourthXCoordinate, fifthXCoordinate, sixthXCoordinate,
+				    seventhXCoordinate);
 	   when(spotsExtractor.getCubeSpots(any(Cube.class))).thenReturn(extractedSpots);
-	   when(spotsExtractor.getCoordinates(any(Cube.class), any())).thenReturn(spotCoordinates);
+	   when(spotsExtractor.getCoordinates(any(Cube.class), any()))
+			 .thenReturn(spotCoordinates);
 	   when(distancesBetweenSpotsProvider
-			 .calculateDistances(any(List.class), any(Spot.class), anyInt())).thenReturn(Arrays.asList(3.0));
+			 .calculateDistances(any(List.class), any(Spot.class), anyInt()))
+			 .thenReturn(Arrays.asList(3.0));
 	   CubeDataCalculator cubeDataCalculator = new CubeDataCalculator(
 			 distancesBetweenSpotsProvider, spotsExtractor);
 	   VolumeRatio expected = new VolumeRatio(FIRST_VOLUME, SECOND_VOLUME);
 	   //when
-	   VolumeRatio result = cubeDataCalculator.calculateVolumeRatio(forCalculation, CoordinateName.X);
+	   VolumeRatio result = cubeDataCalculator
+			 .calculateVolumeRatio(forCalculation, CoordinateName.X);
 	   //then
 	   Assert.assertEquals(expected, result);
     }
@@ -186,7 +217,8 @@ public class CubeDataCalculatorTest {
 
 	   when(spotsExtractor.getCubeSpots(givenCube)).thenReturn(expected);
 	   when(spotsExtractor.getCoordinates(any(Cube.class), any())).thenReturn(DISTANCES);
-	   when(distancesBetweenSpotsProvider.calculateDistances(any(List.class), any(Spot.class), anyInt()))
+	   when(distancesBetweenSpotsProvider
+			 .calculateDistances(any(List.class), any(Spot.class), anyInt()))
 			 .thenReturn(DISTANCES);
 
 	   CubeDataCalculator cubeDataCalculator = new CubeDataCalculator(

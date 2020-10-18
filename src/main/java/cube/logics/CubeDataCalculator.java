@@ -16,7 +16,7 @@ public class CubeDataCalculator {
     private static final int CUBE_SPOTS_COORDINATE_AMOUNT = 8;
     private static final int COORDINATE_ZERO = 0;
     private static final int DEFAULT_ZERO_COORDINATE_COUNTER = 0;
-    private static final int CUBE_EDGES_AMOUNT = 4;
+    private static final int CUBE_EDGES_AMOUNT = 12;
 
 
     private final DistancesBetweenSpotsProvider distancesProvider;
@@ -49,7 +49,7 @@ public class CubeDataCalculator {
 
     public double calculateCubePerimeter(Cube forCalculation) {
 	   double cubeEdge = getCubeEdge(forCalculation);
-	   return cubeEdge * CUBE_EDGES_AMOUNT * CUBE_SIDES_AMOUNT;
+	   return cubeEdge * CUBE_EDGES_AMOUNT;
     }
 
     public double calculateCubeArea(Cube cube) {

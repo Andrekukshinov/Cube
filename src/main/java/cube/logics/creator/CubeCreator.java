@@ -9,14 +9,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class CubeCreator {
-    private final  int firstSpot = 0;
-    private final  int secondSpot = 1;
-    private final  int thirdSpot = 2;
-    private final  int fourthSpot = 3;
-    private final  int fifthSpot = 4;
-    private final  int sixthSpot = 5;
-    private final  int seventhSpot = 6;
-    private final  int eighthSpot = 7;
+    private static final int FIRST_SPOT_NUMBER = 0;
+    private static final int SECOND_SPOT_NUMBER = 1;
+    private static final int THIRD_SPOT_NUMBER = 2;
+    private static final int FOURTH_SPOT_NUMBER = 3;
+    private static final int FIFTH_SPOT_NUMBER = 4;
+    private static final int SIXTH_SPOT_NUMBER = 5;
+    private static final int SEVENTH_SPOT_NUMBER = 6;
+    private static final int EIGHTH_SPOT_NUMBER = 7;
+
     private final Parser parser;
     private final CubeValidator cubeValidator;
 
@@ -30,20 +31,24 @@ public class CubeCreator {
 	   for (String s : source) {
 		  List<Spot> spotsForCubes = parser.parseSpotsLines(s);
 		  if (cubeValidator.isValidForCube(spotsForCubes)) {
-			 Cube cube = new Cube(
-			 	    spotsForCubes.get(firstSpot),
-				    spotsForCubes.get(secondSpot),
-				    spotsForCubes.get(thirdSpot),
-				    spotsForCubes.get(fourthSpot),
-				    spotsForCubes.get(fifthSpot),
-				    spotsForCubes.get(sixthSpot),
-				    spotsForCubes.get(seventhSpot),
-				    spotsForCubes.get(eighthSpot)
-			 );
+			 Cube cube = getCube(spotsForCubes);
 			 Optional<Cube> cubeOptional = Optional.of(cube);
 			 resultCubes.add(cubeOptional);
 		  }
 	   }
 	   return resultCubes;
+    }
+
+    private Cube getCube(List<Spot> spotsForCubes) {
+	   Spot firstSpot = spotsForCubes.get(FIRST_SPOT_NUMBER);
+	   Spot secondSpot = spotsForCubes.get(SECOND_SPOT_NUMBER);
+	   Spot thirdSpot = spotsForCubes.get(THIRD_SPOT_NUMBER);
+	   Spot fourthSpot = spotsForCubes.get(FOURTH_SPOT_NUMBER);
+	   Spot fifthSpot = spotsForCubes.get(FIFTH_SPOT_NUMBER);
+	   Spot sixthSpot = spotsForCubes.get(SIXTH_SPOT_NUMBER);
+	   Spot seventhSpot = spotsForCubes.get(SEVENTH_SPOT_NUMBER);
+	   Spot eighthSpot = spotsForCubes.get(EIGHTH_SPOT_NUMBER);
+	   return new Cube(firstSpot, secondSpot, thirdSpot, fourthSpot, fifthSpot,
+			 sixthSpot, seventhSpot, eighthSpot);
     }
 }

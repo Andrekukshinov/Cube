@@ -28,10 +28,12 @@ public class VolumeRatio {
 
 	   VolumeRatio that = (VolumeRatio) o;
 
-	   if (Double.compare(that.getFirstVolume(), getFirstVolume()) != 0) {
+	   double thatFirstVolume = that.getFirstVolume();
+	   double thatSecondVolume = that.getSecondVolume();
+	   if (Double.compare(thatFirstVolume, getFirstVolume()) != 0) {
 		  return false;
 	   }
-	   return Double.compare(that.getSecondVolume(), getSecondVolume()) == 0;
+	   return Double.compare(thatSecondVolume, getSecondVolume()) == 0;
     }
 
     @Override
@@ -47,6 +49,7 @@ public class VolumeRatio {
 
     @Override
     public String toString() {
-	   return "VolumeRatio{" + "firstVolume=" + firstVolume + ", secondVolume=" + secondVolume + '}';
+	   return String.format("VolumeRatio{firstVolume=%s, secondVolume=%s}",
+			 firstVolume, secondVolume);
     }
 }

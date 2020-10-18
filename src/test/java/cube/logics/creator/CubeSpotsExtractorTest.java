@@ -19,13 +19,14 @@ public class CubeSpotsExtractorTest {
     private final Spot x7 = new Spot(2.0, 6.0, 6.0);
     private final Spot x8 = new Spot(6.0, 6.0, 6.0);
 
-    private final List<Spot> expected = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, x8);
+    private final List<Spot> expected = Arrays
+		  .asList(x1, x2, x3, x4, x5, x6, x7, x8);
     private final Cube givenCube = new Cube(x1, x2, x3, x4, x5, x6, x7, x8);
 
 
     @Test
     public void testGetCubeSpotsShouldExtractCubeSpots() {
-	   CubeSpotsExtractor spotsExtractor = new CubeSpotsExtractor();
+	   CubeDataExtractor spotsExtractor = new CubeDataExtractor();
 	   //when
 	   List<Spot> extractedCubeSpots = spotsExtractor.getCubeSpots(givenCube);
 	   //then

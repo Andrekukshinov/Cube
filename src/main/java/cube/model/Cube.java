@@ -11,10 +11,8 @@ public class Cube {
     private final Spot eighthSpot;
 
     public Cube(
-		  Spot firstSpot, Spot secondSpot,
-		  Spot thirdSpot, Spot lowPlaneTopRight,
-
-		  Spot fifthSpot, Spot sixthSpot,
+		  Spot firstSpot, Spot secondSpot, Spot thirdSpot,
+		  Spot lowPlaneTopRight, Spot fifthSpot, Spot sixthSpot,
 		  Spot seventhSpot, Spot eighthSpot) {
 	   this.firstSpot = firstSpot;
 	   this.secondSpot = secondSpot;
@@ -60,33 +58,45 @@ public class Cube {
 
     @Override
     public boolean equals(Object o) {
-	   if (this == o) {return true;}
-	   if (o == null || getClass() != o.getClass()) {return false;}
+	   if (this == o) {
+		  return true;
+	   }
+	   if (o == null || getClass() != o.getClass()) {
+		  return false;
+	   }
 
 	   Cube cube = (Cube) o;
 
-	   if (!getFirstSpot().equals(cube.getFirstSpot())) {
+	   Spot firstSpot = cube.getFirstSpot();
+	   if (!getFirstSpot().equals(firstSpot)) {
 		  return false;
 	   }
-	   if (!getSecondSpot().equals(cube.getSecondSpot())) {
+	   Spot secondSpot = cube.getSecondSpot();
+	   if (!getSecondSpot().equals(secondSpot)) {
 		  return false;
 	   }
-	   if (!getThirdSpot().equals(cube.getThirdSpot())) {
+	   Spot thirdSpot = cube.getThirdSpot();
+	   if (!getThirdSpot().equals(thirdSpot)) {
 		  return false;
 	   }
-	   if (!getFourthSpot().equals(cube.getFourthSpot())) {
+	   Spot fourthSpot = cube.getFourthSpot();
+	   if (!getFourthSpot().equals(fourthSpot)) {
 		  return false;
 	   }
-	   if (!getFifthSpot().equals(cube.getFifthSpot())) {
+	   Spot fifthSpot = cube.getFifthSpot();
+	   if (!getFifthSpot().equals(fifthSpot)) {
 		  return false;
 	   }
-	   if (!getSixthSpot().equals(cube.getSixthSpot())) {
+	   Spot sixthSpot = cube.getSixthSpot();
+	   if (!getSixthSpot().equals(sixthSpot)) {
 		  return false;
 	   }
-	   if (!getSeventhSpot().equals(cube.getSeventhSpot())) {
+	   Spot seventhSpot = cube.getSeventhSpot();
+	   if (!getSeventhSpot().equals(seventhSpot)) {
 		  return false;
 	   }
-	   return getEighthSpot().equals(cube.getEighthSpot());
+	   Spot eighthSpot = cube.getEighthSpot();
+	   return getEighthSpot().equals(eighthSpot);
     }
 
     @Override
@@ -104,9 +114,23 @@ public class Cube {
 
     @Override
     public String toString() {
-	   return "Cube{" + "lowPlaneBottomLeft=" + firstSpot + ", lowPlaneBottomRight="
-			 + secondSpot + ", lowPlaneTopLeft=" + thirdSpot + ", lowPlaneTopRight="
-			 + fourthSpot + ", topPlaneBottomLeft=" + fifthSpot + ", topPlaneBottomRight="
-			 + sixthSpot + ", topPlaneTopLeft=" + seventhSpot + ", topPlaneTopRight=" + eighthSpot + '}';
+	   StringBuilder builder = new StringBuilder("Cube{lowPlaneBottomLeft=");
+	   builder.append(firstSpot);
+	   builder.append(", lowPlaneBottomRight=");
+	   builder.append(secondSpot);
+	   builder.append(", lowPlaneTopLeft=");
+	   builder.append(thirdSpot);
+	   builder.append(", lowPlaneTopRight=");
+	   builder.append(fourthSpot);
+	   builder.append(", topPlaneBottomLeft=");
+	   builder.append(fifthSpot);
+	   builder.append(", topPlaneBottomRight=");
+	   builder.append(sixthSpot);
+	   builder.append(", topPlaneTopLeft=");
+	   builder.append(seventhSpot);
+	   builder.append(", topPlaneTopRight=");
+	   builder.append(eighthSpot);
+	   builder.append('}');
+	   return builder.toString();
     }
 }

@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
@@ -28,8 +29,11 @@ public class CubeCreatorTest {
 
     public final String validCoordinates = "2.0 2.0 2.0    6.0 2.0 2.0    2.0 6.0 2.0    6.0 6.0 2.0    2.0 2.0 6.0    6.0 2.0 6.0    2.0 6.0 6.0    6.0 6.0 6.0";
     public final String invalidCoordinates = "2456.0 2.0 2.0    6.0 2.0 2.0    2.0 6.0 2.0    6.0 6.0 2.0    2.0 2.0 6.0    6.0 2.0 6.0    2.0 6.0 6.0    6.0 6.0 6.0";
+
+    public final List<Spot> spots = Arrays
+		  .asList(x1, x2, x3, x4, x5, x6, x7, x8);
+
     public final Cube expected = new Cube(x1, x2, x3, x4, x5, x6, x7, x8);
-    public final List<Spot> spots = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, x8);
 
 
     @Test
@@ -37,12 +41,14 @@ public class CubeCreatorTest {
 	   Parser parser = Mockito.mock(Parser.class);
 	   CubeValidator validator = Mockito.mock(CubeValidator.class);
 	   given(parser.parseSpotsLines(anyString())).willReturn(spots);
-	   given(validator.isValidForCube(spots)).willReturn(true);
+	   given(validator.isValidForCube(any(List.class))).willReturn(true);
 	   CubeCreator cubeCreator = new CubeCreator(parser, validator);
 	   //when
-	   List<Optional<Cube>> result = cubeCreator.createCubes(Collections.singletonList(validCoordinates));
+	   List<Optional<Cube>> result = cubeCreator
+			 .createCubes(Collections.singletonList(validCoordinates));
 	   //then
-	   Assert.assertEquals(expected, result.get(0).get());
+	   Optional<Cube> optionalCube = result.get(0);
+	   Assert.assertEquals(expected, optionalCube.get());
 
     }
 
@@ -54,8 +60,10 @@ public class CubeCreatorTest {
 	   given(validator.isValidForCube(spots)).willReturn(true);
 	   CubeCreator cubeCreator = new CubeCreator(parser, validator);
 	   //when
-	   List<Optional<Cube>> result = cubeCreator.createCubes(Collections.singletonList(invalidCoordinates));
-	   Assert.assertEquals(expected, result.get(0).get());
+	   List<Optional<Cube>> result = cubeCreator
+			 .createCubes(Collections.singletonList(invalidCoordinates));
+	   Optional<Cube> optionalCube = result.get(0);
+	   optionalCube.get();
 
     }
 }

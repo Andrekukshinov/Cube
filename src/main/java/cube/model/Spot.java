@@ -1,6 +1,5 @@
 package cube.model;
 
-import java.util.Objects;
 
 public class Spot {
     private final double xCoordinate;
@@ -27,14 +26,28 @@ public class Spot {
 
     @Override
     public boolean equals(Object o) {
-	   if (this == o) return true;
-	   if (o == null || getClass() != o.getClass()) return false;
+	   if (this == o) {
+		  return true;
+	   }
+	   if (o == null || getClass() != o.getClass()) {
+		  return false;
+	   }
 
 	   Spot spot = (Spot) o;
 
-	   if (Double.compare(spot.xCoordinate, xCoordinate) != 0) return false;
-	   if (Double.compare(spot.yCoordinate, yCoordinate) != 0) return false;
-	   return Double.compare(spot.zCoordinate, zCoordinate) == 0;
+	   double thisXCoordinate = this.xCoordinate;
+	   double thisYCoordinate = this.yCoordinate;
+	   double thisZCoordinate = this.zCoordinate;
+	   double xCoordinate = spot.xCoordinate;
+	   double yCoordinate = spot.yCoordinate;
+	   double zCoordinate = spot.zCoordinate;
+	   if (Double.compare(xCoordinate, thisXCoordinate) != 0) {
+		  return false;
+	   }
+	   if (Double.compare(yCoordinate, thisYCoordinate) != 0) {
+		  return false;
+	   }
+	   return Double.compare(zCoordinate, thisZCoordinate) == 0;
     }
 
     @Override
@@ -52,6 +65,8 @@ public class Spot {
 
     @Override
     public String toString() {
-	   return "Spot{" + "xCoordinate=" + xCoordinate + ", yCoordinate=" + yCoordinate + ", zCoordinate=" + zCoordinate + '}';
+	   return String
+			 .format("Spot{xCoordinate=%s, yCoordinate=%s, zCoordinate=%s,}",
+				    xCoordinate, yCoordinate, zCoordinate);
     }
 }

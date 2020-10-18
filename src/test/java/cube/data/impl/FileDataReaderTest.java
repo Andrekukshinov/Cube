@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FileDataReaderTest {
@@ -19,9 +20,8 @@ public class FileDataReaderTest {
     public void testReadLinesShouldReadDataFromFile() throws IOException {
 	   DataReader acquirer = new FileDataReader();
 	   List<String> toCompare = new ArrayList<>();
-	   toCompare.add(FIRST_STRING);
-	   toCompare.add(SECOND_STRING);
-	   toCompare.add(THIRD_STRING);
+	   Collections
+			 .addAll(toCompare, FIRST_STRING, SECOND_STRING, THIRD_STRING);
 	   //when
 	   List<String> result = acquirer.readLines(FILE_PATH);
 	   //then

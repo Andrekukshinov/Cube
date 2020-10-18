@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CubeObserver implements Observer {
-    private final CubeDataCalculator calculator;
     private static CubeObserver instance;
+    private final CubeDataCalculator calculator;
     private Map<Long, Register> cubeDataMap = new HashMap<>();
 
     private CubeObserver(CubeDataCalculator calculator) {

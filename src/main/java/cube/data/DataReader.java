@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface DataReader {
-    List<String> readLines(String filepath) throws IOException;
+    List<String> readLines(String filepath) throws DataException;
 }

@@ -1,11 +1,11 @@
 package cube.data.impl;
 
 
+import cube.data.DataException;
 import cube.data.DataReader;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,11 +17,10 @@ public class FileDataReaderTest {
     public static final String THIRD_STRING = "1.0 1.0 1.0    3.0 1.0 1.0    1.0 3.0 1.0    3.0 3.0 1.0      1.0 1.0 3.0    3.0 1.0 3.0    1.0 3.0 3.0    3.0 3.0 3.0";
 
     @Test
-    public void testReadLinesShouldReadDataFromFile() throws IOException {
+    public void testReadLinesShouldReadDataFromFile() throws DataException {
 	   DataReader acquirer = new FileDataReader();
 	   List<String> toCompare = new ArrayList<>();
-	   Collections
-			 .addAll(toCompare, FIRST_STRING, SECOND_STRING, THIRD_STRING);
+	   Collections.addAll(toCompare, FIRST_STRING, SECOND_STRING, THIRD_STRING);
 	   //when
 	   List<String> result = acquirer.readLines(FILE_PATH);
 	   //then

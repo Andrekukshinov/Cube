@@ -22,7 +22,6 @@ public abstract class CoordinateSpecification implements Specification<Cube> {
 	   for (Double coordinate : xCoordinates) {
 		  if (coordinate - xCoordinate < 0.0001) {
 			 result = true;
-			 break;
 		  }
 	   }
 	   return result;

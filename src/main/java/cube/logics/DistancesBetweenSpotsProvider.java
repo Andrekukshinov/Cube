@@ -7,8 +7,6 @@ import java.util.List;
 
 public strictfp class DistancesBetweenSpotsProvider {
 
-    private static final int DEFAULT_SPOT_NUMBER_TO_CALCULATE_FROM = 0;
-
     public List<Double> calculateDistances(
 		  List<Spot> spots, Spot calculateFrom, int spotNumberToSkip) {
 	   List<Double> distances = new ArrayList<>();

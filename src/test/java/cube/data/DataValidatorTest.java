@@ -12,7 +12,7 @@ public class DataValidatorTest {
 
     @DataProvider(name = "coordinatesProvider")
     public Object[][] coordinatesProvider(Method methodName) {
-	   String stringCoordinatesValid = "1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0";
+	   String stringCoordinatesValid = "-1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0";
 	   String stringCoordinatesInvalidDouble = "1.k0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    ";
 	   String stringCoordinatesInvalidMiddle = "1.0 2.0 1.0  GHJ  1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    ";
 	   String stringCoordinatesInvalid2Instead3 = "1.0 2.0 1.0  2.0 1.0   1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    1.0 2.0 1.0    ";

@@ -46,4 +46,13 @@ public class CubeRepository implements Repository<Cube> {
 	   result.sort(comparator);
 	   return result;
     }
+
+
+    //package access for testing
+    int getCubesLength() {
+        return cubes.size();
+    }
+    Cube getCube(int index) {
+        return cubes.get(index);
+    }
 }

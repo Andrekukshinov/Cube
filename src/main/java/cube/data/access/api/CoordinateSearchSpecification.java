@@ -17,7 +17,7 @@ public abstract class CoordinateSearchSpecification implements SearchSpecificati
 	   List<Double> xCoordinates = getRequiredCoordinates(cube);
 	   boolean result = false;
 	   for (Double coordinate : xCoordinates) {
-		  if (coordinate - xCoordinate < 0.0001) {
+		  if (Math.abs(coordinate - xCoordinate) < 0.0001) {
 			 result = true;
 		  }
 	   }

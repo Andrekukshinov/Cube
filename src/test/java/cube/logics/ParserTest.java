@@ -3,7 +3,7 @@ package cube.logics;
 
 import cube.model.Spot;
 import org.junit.Assert;
-import org.junit.Test;
+ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;

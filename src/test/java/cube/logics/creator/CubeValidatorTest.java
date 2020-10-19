@@ -4,7 +4,7 @@ package cube.logics.creator;
 import cube.logics.DistancesBetweenSpotsProvider;
 import cube.model.Spot;
 import org.junit.Assert;
-import org.junit.Test;
+ import org.testng.annotations.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
@@ -200,3 +200,4 @@ public class CubeValidatorTest {
 	   Assert.assertFalse(validationResult);
     }
 }
+//todo data provider!

@@ -7,10 +7,11 @@ import cube.model.Cube;
 import cube.model.Spot;
 import cube.model.VolumeRatio;
 import org.junit.Assert;
-import org.junit.Test;
+ import org.testng.annotations.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -78,7 +79,7 @@ public class CubeDataCalculatorTest {
 
 	   when(distancesBetweenSpotsProvider
 			 .calculateDistances(any(List.class), any(Spot.class), anyInt()))
-			 .thenReturn(Arrays.asList(3.0));
+			 .thenReturn(Collections.singletonList(3.0));
 
 	   CubeDataCalculator dataCalculator = new CubeDataCalculator(
 			 distancesBetweenSpotsProvider, spotsExtractor);
@@ -99,7 +100,7 @@ public class CubeDataCalculatorTest {
 	   when(spotsExtractor.getCubeSpots(any(Cube.class))).thenReturn(expected);
 
 	   when(distancesBetweenSpotsProvider.calculateDistances(any(List.class), any(Spot.class), anyInt()))
-			 .thenReturn(Arrays.asList(3.0));
+			 .thenReturn(Collections.singletonList(3.0));
 	   CubeDataCalculator dataCalculator = new CubeDataCalculator(
 			 distancesBetweenSpotsProvider, spotsExtractor);
 	   //when
@@ -126,7 +127,7 @@ public class CubeDataCalculatorTest {
 
 	   when(distancesBetweenSpotsProvider
 			 .calculateDistances(any(List.class), any(Spot.class), anyInt()))
-			 .thenReturn(Arrays.asList(3.0));
+			 .thenReturn(Collections.singletonList(3.0));
 
 	   CubeDataCalculator dataCalculator = new CubeDataCalculator(
 			 distancesBetweenSpotsProvider, spotsExtractor);
@@ -198,7 +199,7 @@ public class CubeDataCalculatorTest {
 			 .thenReturn(spotCoordinates);
 	   when(distancesBetweenSpotsProvider
 			 .calculateDistances(any(List.class), any(Spot.class), anyInt()))
-			 .thenReturn(Arrays.asList(3.0));
+			 .thenReturn(Collections.singletonList(3.0));
 	   CubeDataCalculator cubeDataCalculator = new CubeDataCalculator(
 			 distancesBetweenSpotsProvider, spotsExtractor);
 	   VolumeRatio expected = new VolumeRatio(FIRST_VOLUME, SECOND_VOLUME);
@@ -209,7 +210,7 @@ public class CubeDataCalculatorTest {
 	   Assert.assertEquals(expected, result);
     }
 
-    @Test(expected = LogicsException.class)//then
+    @Test(expectedExceptions = LogicsException.class)//then
     public void testCalculateVolumeRatioShouldThrowLogicsException() throws LogicsException {
 	   DistancesBetweenSpotsProvider distancesBetweenSpotsProvider = Mockito
 			 .mock(DistancesBetweenSpotsProvider.class);

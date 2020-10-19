@@ -1,5 +1,6 @@
 package cube.model.observable;
 
+import cube.logics.IdGenerator;
 import cube.model.Cube;
 import cube.model.Spot;
 
@@ -9,13 +10,14 @@ import java.util.List;
 public class CubeObservable extends Cube implements Observable {
     private final long id;
     private final List<Observer> observers = new ArrayList<>();
+    private final IdGenerator generator = new IdGenerator();
 
     public CubeObservable(
 		  Spot firstSpot, Spot secondSpot, Spot thirdSpot, Spot lowPlaneTopRight,
-		  Spot fifthSpot, Spot sixthSpot, Spot seventhSpot, Spot eighthSpot, long id) {
+		  Spot fifthSpot, Spot sixthSpot, Spot seventhSpot, Spot eighthSpot) {
 	   super(firstSpot, secondSpot, thirdSpot, lowPlaneTopRight, fifthSpot, sixthSpot,
 			 seventhSpot, eighthSpot);
-	   this.id = id;
+	   this.id = generator.getId();
     }
 
 
@@ -81,17 +83,16 @@ public class CubeObservable extends Cube implements Observable {
     @Override
     public void addObserver(Observer observer) {
 	   observers.add(observer);
+	   notifyObservers();
     }
 
     @Override
     public void removeObserver(Observer observer) {
-	   observers.add(observer);
+	   observers.remove(observer);
     }
 
-    @Override
-    public void updateCube(int index, Spot spot) {
-
+  //package access for testing
+    List<Observer> getObserves() {
+	   return new ArrayList<>(observers);
     }
-
-
 }

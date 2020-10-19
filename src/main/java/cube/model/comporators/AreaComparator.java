@@ -22,4 +22,5 @@ public class AreaComparator implements Comparator<Cube> {
 	   double area2 = dataCalculator.calculateCubeArea(thatCube);
 	   return Double.compare(area1, area2);
     }
+
 }

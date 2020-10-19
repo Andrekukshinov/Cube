@@ -8,7 +8,7 @@ public interface Observable {
 
     void removeObserver(Observer observer);
 
-    void updateCube(int index, Spot spot);
+
 
     void notifyObservers();
 

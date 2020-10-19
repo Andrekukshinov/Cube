@@ -5,7 +5,7 @@ import cube.logics.Parser;
 import cube.model.Cube;
 import cube.model.Spot;
 import org.junit.Assert;
-import org.junit.Test;
+ import org.testng.annotations.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
@@ -52,7 +52,7 @@ public class CubeCreatorTest {
 
     }
 
-    @Test(expected = IndexOutOfBoundsException.class) //then
+    @Test(expectedExceptions = IndexOutOfBoundsException.class) //then
     public void testCreateCubesShouldThrowNullPointerException() {
 	   Parser parser = Mockito.mock(Parser.class);
 	   CubeValidator validator = Mockito.mock(CubeValidator.class);
@@ -67,3 +67,4 @@ public class CubeCreatorTest {
 
     }
 }
+//todo come back here data provider + distances between spots

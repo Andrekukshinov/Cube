@@ -24,14 +24,20 @@ public class CubeDataExtractor {
 	   return cubeCoordinates;
     }
 
-    public List<Double> getCoordinates(Cube cube, CoordinateName name) {
-	   List<Double> xCoordinates = new ArrayList<>();
+    public Double getMinCoordinate(Cube cube, CoordinateName name) {
+	   List<Double> coordinates = getCoordinates(cube, name);
+	   return Collections.min(coordinates);
+    }
+
+
+	   public List<Double> getCoordinates(Cube cube, CoordinateName name) {
+	   List<Double> coordinates = new ArrayList<>();
 	   for (Spot spot : getCubeSpots(cube)) {
 		  double coordinate;
 		  coordinate = getSpecifiedCoordinate(name, spot);
-		  xCoordinates.add(coordinate);
+		  coordinates.add(coordinate);
 	   }
-	   return xCoordinates;
+	   return coordinates;
     }
 
     private double getSpecifiedCoordinate(CoordinateName name, Spot spot) {

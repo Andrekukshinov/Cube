@@ -62,7 +62,6 @@ public class CubeDataCalculator {
 		  throws LogicsException {
 	   double totalVolume = calculateCubeVolume(cubeToSplit);
 	   VolumesSpecification specification = new VolumesSpecification(dataExtractor);
-
 	   return specification.calculateVolumes(cubeToSplit, totalVolume, coordinateNameType);
     }
 

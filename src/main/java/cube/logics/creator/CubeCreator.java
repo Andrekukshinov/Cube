@@ -1,5 +1,6 @@
 package cube.logics.creator;
 
+import cube.data.access.impl.CubeRepository;
 import cube.logics.Parser;
 import cube.model.Cube;
 import cube.model.Spot;
@@ -7,8 +8,12 @@ import cube.model.Spot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public class CubeCreator {
+    private static final Logger LOGGER = Logger.getLogger(CubeCreator.class.getName());
+
+
     private static final int FIRST_SPOT_NUMBER = 0;
     private static final int SECOND_SPOT_NUMBER = 1;
     private static final int THIRD_SPOT_NUMBER = 2;
@@ -34,7 +39,11 @@ public class CubeCreator {
 			 Cube cube = getCube(spotsForCubes);
 			 Optional<Cube> cubeOptional = Optional.of(cube);
 			 resultCubes.add(cubeOptional);
+		  } else {
+			 String msg = String.format("line %s doesnt suit", s);
+			 LOGGER.warning(msg);
 		  }
+
 	   }
 	   return resultCubes;
     }

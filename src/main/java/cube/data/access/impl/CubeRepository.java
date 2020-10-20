@@ -1,5 +1,6 @@
 package cube.data.access.impl;
 
+import cube.data.access.api.CoordinateSearchSpecification;
 import cube.data.access.api.Repository;
 import cube.data.access.api.SearchSpecification;
 import cube.data.access.api.SortSpecification;
@@ -9,8 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CubeRepository implements Repository<Cube> {
+    private static final Logger LOGGER = Logger.getLogger(CubeRepository.class.getName());
+
+
     private final List<Cube> cubes = new ArrayList<>();
 
     @Override
@@ -35,6 +40,9 @@ public class CubeRepository implements Repository<Cube> {
 		  if (searchSpecification.isSpecified(cube)) {
 			 resultCubes.add(cube);
 		  }
+	   }
+	   if (resultCubes.size() == 0) {
+		  LOGGER.warning("Cubes with such params not found is not found");
 	   }
 	   return resultCubes;
     }

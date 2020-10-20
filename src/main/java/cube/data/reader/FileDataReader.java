@@ -14,7 +14,6 @@ public class FileDataReader implements DataReader {
 	   List<String> result = new ArrayList<>();
 	   try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
 		  String line = reader.readLine();
-
 		  while (line != null) {
 			 result.add(line);
 			 line = reader.readLine();

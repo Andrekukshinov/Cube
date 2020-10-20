@@ -17,8 +17,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.when;
 
 public class CubeValidatorTest {
-
-
     @DataProvider(name = "spotsForValidator")
     public Object[][] spotsForValidator(Method method) {
 	   Spot x1 = new Spot(2.0, 2.0, 2.0);

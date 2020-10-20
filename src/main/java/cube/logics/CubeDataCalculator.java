@@ -82,6 +82,8 @@ public class CubeDataCalculator {
 			 zZeroCoordinateCounter++;
 		  }
 	   }
-	   return zZeroCoordinateCounter == CUBE_SPOTS_COORDINATE_AMOUNT || xZeroCoordinateCounter == CUBE_SPOTS_COORDINATE_AMOUNT || yZeroCoordinateCounter == CUBE_SPOTS_COORDINATE_AMOUNT;
+	   return zZeroCoordinateCounter == CUBE_SPOTS_COORDINATE_AMOUNT ||
+			 xZeroCoordinateCounter == CUBE_SPOTS_COORDINATE_AMOUNT ||
+			 yZeroCoordinateCounter == CUBE_SPOTS_COORDINATE_AMOUNT;
     }
 }

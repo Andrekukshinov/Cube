@@ -4,9 +4,11 @@ package cube.logics.creator;
 import cube.logics.DistancesBetweenSpotsProvider;
 import cube.model.Spot;
 import org.junit.Assert;
- import org.testng.annotations.Test;
 import org.mockito.Mockito;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,26 +17,63 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.when;
 
 public class CubeValidatorTest {
-    private static final Spot x1 = new Spot(2.0, 2.0, 2.0);
-    private static final Spot x2 = new Spot(6.0, 2.0, 2.0);
-    private static final Spot x3 = new Spot(2.0, 6.0, 2.0);
-    private static final Spot x4 = new Spot(6.0, 6.0, 2.0);
-    private static final Spot x5 = new Spot(2.0, 2.0, 6.0);
-    private static final Spot x6 = new Spot(6.0, 2.0, 6.0);
-    private static final Spot x7 = new Spot(2.0, 6.0, 6.0);
-    private static final Spot x8 = new Spot(6.0, 6.0, 6.0);
-
-    private static final Spot tooFar = new Spot(61.0, 6.0, 6.0);
 
 
-    private static final Spot negativeX1 = new Spot(-2.0, -2.0, -2.0);
-    private static final Spot negativeX2 = new Spot(-6.0, -2.0, -2.0);
-    private static final Spot negativeX3 = new Spot(-2.0, -6.0, -2.0);
-    private static final Spot negativeX4 = new Spot(-6.0, -6.0, -2.0);
-    private static final Spot negativeX5 = new Spot(-2.0, -2.0, -6.0);
-    private static final Spot negativeX6 = new Spot(-6.0, -2.0, -6.0);
-    private static final Spot negativeX7 = new Spot(-2.0, -6.0, -6.0);
-    private static final Spot negativeX8 = new Spot(-6.0, -6.0, -6.0);
+    @DataProvider(name = "spotsForValidator")
+    public Object[][] spotsForValidator(Method method) {
+	   Spot x1 = new Spot(2.0, 2.0, 2.0);
+	   Spot x2 = new Spot(6.0, 2.0, 2.0);
+	   Spot x3 = new Spot(2.0, 6.0, 2.0);
+	   Spot x4 = new Spot(6.0, 6.0, 2.0);
+	   Spot x5 = new Spot(2.0, 2.0, 6.0);
+	   Spot x6 = new Spot(6.0, 2.0, 6.0);
+	   Spot x7 = new Spot(2.0, 6.0, 6.0);
+	   Spot x8 = new Spot(6.0, 6.0, 6.0);
+
+	   Spot tooFar = new Spot(61.0, 6.0, 6.0);
+	   Spot tooClose = new Spot(ZERO_COORDINATE, ZERO_COORDINATE, ZERO_COORDINATE);
+
+
+	   Spot negativeX1 = new Spot(-2.0, -2.0, -2.0);
+	   Spot negativeX2 = new Spot(-6.0, -2.0, -2.0);
+	   Spot negativeX3 = new Spot(-2.0, -6.0, -2.0);
+	   Spot negativeX4 = new Spot(-6.0, -6.0, -2.0);
+	   Spot negativeX5 = new Spot(-2.0, -2.0, -6.0);
+	   Spot negativeX6 = new Spot(-6.0, -2.0, -6.0);
+	   Spot negativeX7 = new Spot(-2.0, -6.0, -6.0);
+	   Spot negativeX8 = new Spot(-6.0, -6.0, -6.0);
+
+	   List<Spot> spotsToValidatePositive = Arrays
+			 .asList(x1, x2, x3, x4, x5, x6, x7, x8);
+	   List<Spot> spotsToValidateNegative = Arrays
+			 .asList(negativeX1, negativeX2, negativeX3, negativeX4, negativeX5,
+				    negativeX6, negativeX7, negativeX8);
+
+
+	   Object[][] result;
+	   String methodName = method.getName();
+	   if (methodName.equalsIgnoreCase("testIsValidForCubeShouldReturnTrue")) {
+		  result = new Object[2][1];
+
+		  result[0][0] = spotsToValidatePositive;
+
+		  result[1][0] = spotsToValidateNegative;
+
+		  return result;
+	   } else {
+		  result = new Object[4][1];
+
+		  result[0][0] = Arrays.asList(x1, x2, x3, x4, x5, x6, x7);
+
+		  result[1][0] = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, tooClose);
+
+		  result[2][0] = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, x7);
+
+		  result[3][0] = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, tooFar);
+
+		  return result;
+	   }
+    }
 
     private static final double CUBE_EDGE_DISTANCE_FOR_VALID = 4.0;
     private static final double SIDE_DIAGONAL_DISTANCE_FOR_VALID = 5.656854249492381;
@@ -60,7 +99,7 @@ public class CubeValidatorTest {
 
     private void distancesFromSpot(
 		  DistancesBetweenSpotsProvider provider, List<Double> distancesToCompare) {
-	   when(provider.calculateDistances(any(List.class), any(Spot.class),anyInt()))
+	   when(provider.calculateDistances(any(List.class), any(Spot.class), anyInt()))
 			 .thenReturn(distancesToCompare);
     }
 
@@ -75,35 +114,9 @@ public class CubeValidatorTest {
 	   return calculator;
     }
 
-    @Test
-    public void testIsValidForCubePositiveDiapasonShouldReturnTrue() {
+    @Test(dataProvider = "spotsForValidator")
+    public void testIsValidForCubeShouldReturnTrue(List<Spot> spotsToValidate) {
 	   //given
-	   List<Spot> spotsToValidate = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, x8);
-	   List<Double> distancesToCompareFromFirst = getDistancesFromFirstSpot(
-			 CUBE_DIAGONAL_DISTANCE_FOR_VALID);
-
-	   List<Double> distancesToCompareFromLast = getDistancesFromLastSpot(
-			 CUBE_DIAGONAL_DISTANCE_FOR_VALID, SIDE_DIAGONAL_DISTANCE_FOR_VALID,
-			 SIDE_DIAGONAL_DISTANCE_FOR_VALID, CUBE_EDGE_DISTANCE_FOR_VALID,
-			 SIDE_DIAGONAL_DISTANCE_FOR_VALID, CUBE_EDGE_DISTANCE_FOR_VALID,
-			 CUBE_EDGE_DISTANCE_FOR_VALID);
-	   DistancesBetweenSpotsProvider calculator = mockCalculator(
-			 distancesToCompareFromFirst, distancesToCompareFromLast);
-
-	   CubeValidator validator = new CubeValidator(calculator);
-	   //when
-	   boolean validationResult = validator.isValidForCube(spotsToValidate);
-	   //then
-	   Assert.assertTrue(validationResult);
-    }
-
-    @Test
-    public void testIsValidForCubeNegativeDiapasonShouldReturnTrue() {
-	   //given
-	   List<Spot> spotsToValidate = Arrays
-			 .asList(negativeX1, negativeX2, negativeX3, negativeX4, negativeX5,
-				    negativeX6, negativeX7, negativeX8);
-
 	   List<Double> distancesToCompareFromFirst = getDistancesFromFirstSpot(
 			 CUBE_DIAGONAL_DISTANCE_FOR_VALID);
 
@@ -123,10 +136,9 @@ public class CubeValidatorTest {
     }
 
 
-    @Test
-    public void testIsValidForCubeShouldReturnFalseAsNotEnoughSpots() {
+    @Test(dataProvider = "spotsForValidator")
+    public void testIsValidForCubeShouldReturnFalse(List<Spot> spotsToValidate) {
 	   //given
-	   List<Spot> spotsToValidate = Arrays.asList(x1, x2, x3, x4, x5, x6, x7);
 	   int zeroDistance = 0;
 	   List<Double> distancesToCompareFromFirst = getDistancesFromFirstSpot(
 			 zeroDistance);
@@ -142,62 +154,4 @@ public class CubeValidatorTest {
 	   //then
 	   Assert.assertFalse(validationResult);
     }
-
-    @Test
-    public void testIsValidForCubeShouldReturnFalseAsSpotIsTooClose() {
-	   //given
-	   Spot tooClose = new Spot(ZERO_COORDINATE, ZERO_COORDINATE, ZERO_COORDINATE);
-	   List<Spot> spotsToValidate = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, tooClose);
-	   List<Double> distancesToCompareFromFirst = getDistancesFromFirstSpot(
-			 3.4641016151);
-	   List<Double> distancesToCompareFromLast = getDistancesFromLastSpot(8.7177978871,
-			 8.7177978871, 6.6332495807, 8.7177978871, 6.6332495807, 6.6332495807,
-			 3.4641016151);
-	   DistancesBetweenSpotsProvider calculator = mockCalculator(
-			 distancesToCompareFromFirst, distancesToCompareFromLast);
-
-	   CubeValidator validator = new CubeValidator(calculator);
-	   //when
-	   boolean validationResult = validator.isValidForCube(spotsToValidate);
-	   //then
-	   Assert.assertFalse(validationResult);
-    }
-
-    @Test
-    public void testIsValidForCubeShouldReturnFalseAsSpotRepeats() {
-	   //given
-	   List<Spot> spotsToValidate = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, x7);
-	   List<Double> distancesToCompareFromFirst = getDistancesFromFirstSpot(0);
-
-	   List<Double> distancesToCompareFromLast = getDistancesFromLastSpot(0,
-			 SIDE_DIAGONAL_DISTANCE_FOR_VALID, CUBE_EDGE_DISTANCE_FOR_VALID,
-			 SIDE_DIAGONAL_DISTANCE_FOR_VALID, CUBE_EDGE_DISTANCE_FOR_VALID,
-			 CUBE_DIAGONAL_DISTANCE_FOR_VALID, SIDE_DIAGONAL_DISTANCE_FOR_VALID);
-	   DistancesBetweenSpotsProvider calculator = mockCalculator(
-			 distancesToCompareFromFirst, distancesToCompareFromLast);
-
-	   CubeValidator validator = new CubeValidator(calculator);
-	   //when
-	   boolean validationResult = validator.isValidForCube(spotsToValidate);
-	   //then
-	   Assert.assertFalse(validationResult);
-    }
-
-    @Test
-    public void testIsValidForCubeShouldReturnFalseAsSpotIsTooFar() {
-	   //given
-	   List<Spot> spotsToValidate = Arrays.asList(x1, x2, x3, x4, x5, x6, x7, tooFar);
-	   List<Double> distancesToCompareFromFirst = getDistancesFromFirstSpot(59);
-	   List<Double> distancesToCompareFromLast = getDistancesFromLastSpot(59,
-			 59.1452627158, 59.1354377679, 59.1452627158, 59.1354377679, 55.2901438781,
-			 59.2705660509);
-	   DistancesBetweenSpotsProvider calculator = mockCalculator(
-			 distancesToCompareFromFirst, distancesToCompareFromLast);
-	   CubeValidator validator = new CubeValidator(calculator);
-	   //when
-	   boolean validationResult = validator.isValidForCube(spotsToValidate);
-	   //then
-	   Assert.assertFalse(validationResult);
-    }
 }
-//todo data provider!

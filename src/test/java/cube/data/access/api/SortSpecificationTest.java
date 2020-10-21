@@ -1,7 +1,8 @@
 package cube.data.access.api;
 
 
-import cube.data.access.impl.sort.*;
+import cube.data.access.SortType;
+import cube.data.access.impl.SortSpecificationImpl;
 import cube.model.Cube;
 import cube.model.comporators.*;
 import org.junit.Assert;
@@ -12,7 +13,7 @@ import java.util.Comparator;
 public class SortSpecificationTest {
     @Test
     public void testGetComparatorShouldReturnAreaComparator() {
-	   SortSpecification<Cube> sortSpecification = new AreaSortSpecification();
+	   SortSpecification<Cube> sortSpecification = new SortSpecificationImpl(SortType.AREA);
 	   //when
 	   Comparator<Cube> comparator = sortSpecification.getComparator();
 	   //then
@@ -21,7 +22,7 @@ public class SortSpecificationTest {
 
     @Test
     public void testGetComparatorShouldReturnVolumeComparator() {
-	   SortSpecification<Cube> sortSpecification = new VolumeSortSpecification();
+	   SortSpecification<Cube> sortSpecification = new SortSpecificationImpl(SortType.VOLUME);
 	   //when
 	   Comparator<Cube> comparator = sortSpecification.getComparator();
 	   //then
@@ -30,7 +31,7 @@ public class SortSpecificationTest {
 
     @Test
     public void testGetComparatorShouldReturnPerimeterComparator() {
-	   SortSpecification<Cube> sortSpecification = new PerimeterSortSpecification();
+	   SortSpecification<Cube> sortSpecification = new SortSpecificationImpl(SortType.PERIMETER);
 	   //when
 	   Comparator<Cube> comparator = sortSpecification.getComparator();
 	   //then
@@ -39,7 +40,7 @@ public class SortSpecificationTest {
 
     @Test
     public void testGetComparatorShouldReturnXCoordinateComparator() {
-	   SortSpecification<Cube> sortSpecification = new XCoordinateSortSpecification();
+	   SortSpecification<Cube> sortSpecification = new SortSpecificationImpl(SortType.X);
 	   //when
 	   Comparator<Cube> comparator = sortSpecification.getComparator();
 	   //then
@@ -48,7 +49,7 @@ public class SortSpecificationTest {
 
     @Test
     public void testGetComparatorShouldReturnYCoordinateComparator() {
-	   SortSpecification<Cube> sortSpecification = new YCoordinateSortSpecification();
+	   SortSpecification<Cube> sortSpecification = new SortSpecificationImpl(SortType.Y);
 	   //when
 	   Comparator<Cube> comparator = sortSpecification.getComparator();
 	   //then
@@ -57,7 +58,7 @@ public class SortSpecificationTest {
 
     @Test
     public void testGetComparatorShouldReturnZCoordinateComparator() {
-	   SortSpecification<Cube> sortSpecification = new ZCoordinateSortSpecification();
+	   SortSpecification<Cube> sortSpecification = new SortSpecificationImpl(SortType.Z);
 	   //when
 	   Comparator<Cube> comparator = sortSpecification.getComparator();
 	   //then

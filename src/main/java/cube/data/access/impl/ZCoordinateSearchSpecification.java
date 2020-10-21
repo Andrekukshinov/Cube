@@ -1,4 +1,4 @@
-package cube.data.access.impl.search;
+package cube.data.access.impl;
 
 import cube.data.access.api.CoordinateSearchSpecification;
 import cube.logics.creator.CubeDataExtractor;
@@ -7,16 +7,16 @@ import cube.model.Cube;
 
 import java.util.List;
 
-public class XCoordinateSearchSpecification extends CoordinateSearchSpecification {
+public class ZCoordinateSearchSpecification extends CoordinateSearchSpecification {
     private final CubeDataExtractor dataExtractor;
 
     //package access for testing
-    XCoordinateSearchSpecification(CubeDataExtractor dataExtractor, double xCoordinate) {
+    ZCoordinateSearchSpecification(CubeDataExtractor dataExtractor, double xCoordinate) {
 	   super(xCoordinate);
 	   this.dataExtractor = dataExtractor;
     }
 
-    public XCoordinateSearchSpecification(double xCoordinate) {
+    public ZCoordinateSearchSpecification(double xCoordinate) {
 	   super(xCoordinate);
 	   dataExtractor = new CubeDataExtractor();
     }
@@ -26,3 +26,4 @@ public class XCoordinateSearchSpecification extends CoordinateSearchSpecificatio
 	   return dataExtractor.getCoordinates(cube, CoordinateName.X);
     }
 }
+

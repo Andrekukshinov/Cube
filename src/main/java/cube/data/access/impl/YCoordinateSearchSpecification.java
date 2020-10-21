@@ -1,4 +1,4 @@
-package cube.data.access.impl.search;
+package cube.data.access.impl;
 
 import cube.data.access.api.CoordinateSearchSpecification;
 import cube.logics.creator.CubeDataExtractor;

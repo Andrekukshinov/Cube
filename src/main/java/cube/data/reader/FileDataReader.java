@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FileDataReader implements DataReader {
@@ -21,6 +23,8 @@ public class FileDataReader implements DataReader {
 	   } catch (IOException e) {
 		  throw new DataException(e.getMessage(), e);
 	   }
+
 	   return result;
     }
 }
+

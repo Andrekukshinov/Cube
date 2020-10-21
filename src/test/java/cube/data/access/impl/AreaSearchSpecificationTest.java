@@ -1,9 +1,9 @@
-package cube.data.access.impl.search;
+package cube.data.access.impl;
 
 import cube.data.access.api.CoordinateSearchSpecificationTest;
+import cube.data.access.impl.AreaSearchSpecification;
 import cube.logics.CubeDataCalculator;
 import cube.model.Cube;
-import cube.model.Spot;
 import org.junit.Assert;
  import org.testng.annotations.Test;
 import org.mockito.Mockito;

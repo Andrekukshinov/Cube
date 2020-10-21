@@ -1,9 +1,9 @@
 package cube.data.access.api;
 
 
-import cube.data.access.impl.search.XCoordinateSearchSpecification;
-import cube.data.access.impl.search.YCoordinateSearchSpecification;
-import cube.data.access.impl.search.ZCoordinateSearchSpecification;
+import cube.data.access.impl.XCoordinateSearchSpecification;
+import cube.data.access.impl.YCoordinateSearchSpecification;
+import cube.data.access.impl.ZCoordinateSearchSpecification;
 import cube.model.Cube;
 import cube.model.Spot;
 import org.junit.Assert;

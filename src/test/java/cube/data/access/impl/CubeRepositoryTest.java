@@ -1,9 +1,8 @@
 package cube.data.access.impl;
 
 
+import cube.data.access.SortType;
 import cube.data.access.api.CoordinateSearchSpecificationTest;
-import cube.data.access.impl.search.AreaSearchSpecification;
-import cube.data.access.impl.sort.AreaSortSpecification;
 import cube.model.Cube;
 import cube.model.Spot;
 import cube.model.comporators.AreaComparator;
@@ -53,7 +52,7 @@ public class CubeRepositoryTest {
     public void testSortShouldSortArrayByVolume(Cube givenCube) {
 	   int negativeNumber = -1;
 	   CubeRepository repository = new CubeRepository();
-	   AreaSortSpecification specification = Mockito.mock(AreaSortSpecification.class);
+	   SortSpecificationImpl specification = Mockito.mock(SortSpecificationImpl.class);
 	   AreaComparator comparator = Mockito.mock(AreaComparator.class);
 	   when(specification.getComparator()).thenReturn(comparator);
 	   when(comparator.compare(any(Cube.class), any(Cube.class)))
